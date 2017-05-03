@@ -31,13 +31,12 @@ public abstract class Greeter2 {
 
   private static Behavior<Command> greeterBehavior(String currentGreeting) {
     return Actor.immutable(Greeter2.Command.class)
-    .onMessage(Greeter2.WhoToGreet.class, (ctx, msg) -> greeterBehavior("hello, " + msg.who))
-    .onMessage(Greeter2.Greet.class, (ctx, msg) -> {
-      System.out.println(currentGreeting);
-      return Actor.same();
-    })
-    .build();
-
+      .onMessage(Greeter2.WhoToGreet.class, (ctx, msg) -> greeterBehavior("hello, " + msg.who))
+      .onMessage(Greeter2.Greet.class, (ctx, msg) -> {
+        System.out.println(currentGreeting);
+        return Actor.same();
+      })
+      .build();
   }
 
 }

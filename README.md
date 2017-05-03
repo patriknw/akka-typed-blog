@@ -20,6 +20,13 @@ Blog Posts and their main classes that can be run with sbt or maven:
   * Scala
     * blog.typed.scaladsl.CoexistenceApp1
     * blog.typed.scaladsl.CoexistenceApp2
+* [Akka Typed: Mutable vs. Immutable](http://blog.akka.io/typed/2017/05/08/typed-mutable-vs-immutable) 
+  * Java
+    * blog.typed.javadsl.MutableRoundRobinApp
+    * blog.typed.javadsl.ImmutableRoundRobinApp
+  * Scala
+    * blog.typed.scaladsl.MutableRoundRobinApp
+    * blog.typed.scaladsl.ImmutableRoundRobinApp
 
 ## How to Run with sbt
 
