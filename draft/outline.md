@@ -20,6 +20,7 @@
 - differences
   - stop by default
   - no one-for-all
+  - bubbling up failures (escalate), akka/akka#22665
 
 6. Signals
 - lifecycle signals
@@ -30,6 +31,7 @@
 - ask
 - forward, no sender
 - stopping, PoisonPill
+- dispatchers and mailbox capacity (bounded mailbox is an important difference)
 
 8. Timers
 - buncher sample
