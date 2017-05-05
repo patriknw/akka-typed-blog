@@ -2,9 +2,11 @@ name := "akka-typed-blog"
 
 version := "1.0"
 
-scalaVersion := "2.11.8"
+scalaVersion := "2.11.11"
 
-lazy val akkaVersion = "2.5-SNAPSHOT"
+lazy val akkaVersion = "2.5.99-TYPED-M1"
+
+resolvers += "Akka Snapshot Repository" at "http://repo.akka.io/snapshots/"
 
 libraryDependencies ++= Seq(
   "com.typesafe.akka" %% "akka-typed" % akkaVersion,
