@@ -8,7 +8,8 @@ import akka.typed.javadsl.Actor.MutableBehavior;
 import akka.typed.javadsl.Actor.Receive;
 import akka.typed.javadsl.ActorContext;
 
-public class MutableRoundRobin<T> extends MutableBehavior<T> {
+public class MutableRoundRobin<T> extends MutableBehavior<T>
+  implements Actor.Receive<T> {
 
   public static <T> Behavior<T> roundRobinBehavior(
       int numberOfWorkers, Behavior<T> worker) {
@@ -29,24 +30,19 @@ public class MutableRoundRobin<T> extends MutableBehavior<T> {
 
   @Override
   public Receive<T> createReceive() {
-    return new Actor.Receive<T>() {
-      @Override
-      public Behavior<T> receiveMessage(T msg) {
-        return onMessage(msg);
-      }
-
-      @Override
-      public Behavior<T> receiveSignal(Signal sig) {
-        return Actor.unhandled();
-      }
-    };
+    return this; // receiveMessage and receiveSignal
   }
 
-  private MutableRoundRobin<T> onMessage(T msg) {
+  @Override // Actor.Receive
+  public Behavior<T> receiveMessage(T msg) {
     workers[(int) (index % workers.length)].tell(msg);
     index++;
     return this;
   }
 
+  @Override // Actor.Receive
+  public Behavior<T> receiveSignal(Signal sig) {
+    return Actor.unhandled();
+  }
 
 }
