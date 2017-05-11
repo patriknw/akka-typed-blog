@@ -19,7 +19,7 @@ object ImmutableRoundRobin {
 
   private def activeRoutingBehavior[T](index: Long, workers: Vector[ActorRef[T]]): Behavior[T] =
     Actor.immutable[T] { (ctx, msg) =>
-      workers((index % workers.size).toInt) ! msg
+      workers(abs(index % workers.size).toInt) ! msg
       activeRoutingBehavior(index + 1, workers)
     }
 }
