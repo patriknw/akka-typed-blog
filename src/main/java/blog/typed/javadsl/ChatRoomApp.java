@@ -7,19 +7,19 @@ import akka.typed.ActorSystem;
 import akka.typed.Behavior;
 import akka.typed.javadsl.Actor;
 
-public class ImmutableRoundRobinApp {
+public class ChatRoomApp {
 
   public static void main(String[] args) throws IOException {
     Behavior<Void> root = Actor.deferred(ctx -> {
-      ActorRef<Worker.Command> workerPool =
-        ctx.spawn(ImmutableRoundRobin.roundRobinBehavior(3, Worker.behavior()), "workerPool");
-      for (int n = 1; n <= 20; n++) {
-        workerPool.tell(new Worker.Job(String.valueOf(n)));
-      }
+      ActorRef<ChatRoom.Command> chatRoom =
+        ctx.spawn(ChatRoom.behavior(), "chatRoom");
+      ActorRef<ChatRoom.SessionEvent> gabbler =
+          ctx.spawn(Gabbler.behavior(), "gabbler");
+      chatRoom.tell(new ChatRoom.GetSession("ol’ Gabbler", gabbler));
 
       return Actor.empty();
     });
-    ActorSystem<Void> system = ActorSystem.create("RoundRobin", root);
+    ActorSystem<Void> system = ActorSystem.create("ChatRoomDemo", root);
     try {
       System.out.println("Press ENTER to exit the system");
       System.in.read();
