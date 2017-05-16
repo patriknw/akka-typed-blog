@@ -35,6 +35,13 @@ Blog Posts and their main classes that can be run with sbt or maven:
   * Scala
     * blog.typed.scaladsl.MutableRoundRobinApp
     * blog.typed.scaladsl.ImmutableRoundRobinApp
+* **[Akka Typed: Supervision](http://blog.akka.io/typed/2017/05/16/supervision)**
+  * Java
+    * blog.typed.javadsl.FlakyWorkerApp
+  * Scala
+    * blog.typed.scaladsl.FlakyWorkerApp
+    
+    
 
 ## How to Run with sbt
 
