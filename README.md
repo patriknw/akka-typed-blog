@@ -40,7 +40,11 @@ Blog Posts and their main classes that can be run with sbt or maven:
     * blog.typed.javadsl.FlakyWorkerApp
   * Scala
     * blog.typed.scaladsl.FlakyWorkerApp
-    
+* **[Akka Typed: Signal](http://blog.akka.io/typed/2017/05/19/signals)**
+  * Java
+    * blog.typed.javadsl.FlakyWorkerApp2
+  * Scala
+    * blog.typed.scaladsl.FlakyWorkerApp2
     
 
 ## How to Run with sbt
