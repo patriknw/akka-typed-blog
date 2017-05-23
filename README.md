@@ -59,7 +59,7 @@ Press ENTER to exit the system
 ## How to Run with maven
 
 ```
-mvn exec:java -Dexec.mainClass="blog.classic.javadsl.HelloWorldApp1"
+mvn compile exec:java -Dexec.mainClass="blog.classic.javadsl.HelloWorldApp1"
 ```
 
 Press ENTER to exit the system
