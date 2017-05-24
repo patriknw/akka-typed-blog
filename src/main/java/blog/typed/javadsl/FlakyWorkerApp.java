@@ -16,8 +16,8 @@ public class FlakyWorkerApp {
     Behavior<Void> root = Actor.deferred(ctx -> {
       SupervisorStrategy strategy = SupervisorStrategy.restart();
       ActorRef<FlakyWorker.Command> worker =
-        ctx.spawn(Actor.restarter(RuntimeException.class, strategy,
-            FlakyWorker.behavior()), "worker");
+        ctx.spawn(Actor.supervise(FlakyWorker.behavior())
+          .onFailure(RuntimeException.class, strategy), "worker");
 
       for (int n = 1; n <= 20; n++) {
         worker.tell(new FlakyWorker.Job(String.valueOf(n)));
@@ -55,9 +55,10 @@ public class FlakyWorkerApp {
       SupervisorStrategy.restartWithLimit(3, Duration.create(1, TimeUnit.SECONDS));
 
     Behavior<FlakyWorker.Command> behv =
-      Actor.restarter(RuntimeException.class, restart,
-        Actor.restarter(IllegalStateException.class,
-          limitedRestart, FlakyWorker.behavior()));
+      Actor.supervise(
+        Actor.supervise(FlakyWorker.behavior()).onFailure(IllegalStateException.class, limitedRestart)
+      ).onFailure(RuntimeException.class, restart);
+
   }
 }
 

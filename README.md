@@ -2,9 +2,7 @@
 
 ## Akka Typed Version
 
-Use `akka-typed` **`2.5.99-TYPED-M1`** in snapshot repository [http://repo.akka.io/snapshots/](http://repo.akka.io/snapshots/).
-
-To use this version you need to add sbt resolver, maven or gradle repository as described in the [documentation](http://doc.akka.io/docs/akka/2.5/intro/getting-started.html#Using_a_build_tool) to you build, or use this example project as template.
+Use `akka-typed` **`2.5.2`** or later.
 
 ## Blog Posts
 

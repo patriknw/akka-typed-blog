@@ -62,7 +62,7 @@ object WorkerManager {
 
   private val strategy = SupervisorStrategy.restartWithLimit(maxNrOfRetries = 2, 1.second)
   private val worker: Behavior[FlakyWorker2.Command] =
-    Actor.restarter[RuntimeException](strategy).wrap(FlakyWorker2.workerBehavior)
+    Actor.supervise(FlakyWorker2.workerBehavior).onFailure[RuntimeException](strategy)
 
   val workerManagerBehavior: Behavior[Command] =
     activeOption2(Map.empty)
