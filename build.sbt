@@ -4,9 +4,7 @@ version := "1.0"
 
 scalaVersion := "2.12.2"
 
-lazy val akkaVersion = "2.5.99-TYPED-M1"
-
-resolvers += "Akka Snapshot Repository" at "http://repo.akka.io/snapshots/"
+lazy val akkaVersion = "2.5.2"
 
 libraryDependencies ++= Seq(
   "com.typesafe.akka" %% "akka-typed" % akkaVersion,

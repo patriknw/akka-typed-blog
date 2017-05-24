@@ -42,7 +42,7 @@ public abstract class FlakyWorkerManager {
   private static final SupervisorStrategy strategy =
       SupervisorStrategy.restartWithLimit(2, Duration.create(1, TimeUnit.SECONDS));
   private static final Behavior<FlakyWorker2.Command> worker =
-      Actor.restarter(RuntimeException.class, strategy, FlakyWorker2.behavior());
+      Actor.supervise(FlakyWorker2.behavior()).onFailure(RuntimeException.class, strategy);
 
   public static Behavior<Command> behavior() {
     return activeOption2(new HashMap<>());

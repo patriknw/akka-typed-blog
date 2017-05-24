@@ -38,7 +38,7 @@ object FlakyWorkerApp {
 
       val strategy = SupervisorStrategy.restart
       val worker = ctx.spawn(
-        Actor.restarter[RuntimeException](strategy).wrap(workerBehavior),
+        Actor.supervise(workerBehavior).onFailure[RuntimeException](strategy),
         "worker")
 
       (1 to 20).foreach { n =>
@@ -67,12 +67,12 @@ object FlakyWorkerApp {
 
   private def demonstrateNesting(): Unit = {
     import FlakyWorker._
-    import Actor.restarter
+    import Actor.supervise
     import SupervisorStrategy._
     val behv: Behavior[Command] =
-      restarter[RuntimeException](restart).wrap(
-        restarter[IllegalStateException](restartWithLimit(3, 1.second)).wrap(
-          workerBehavior))
+      supervise(
+        supervise(workerBehavior).onFailure[IllegalStateException](restartWithLimit(3, 1.second)))
+        .onFailure[RuntimeException](restart)
   }
 
 }
