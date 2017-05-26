@@ -8,7 +8,7 @@ Use `akka-typed` **`2.5.2`** or later.
 
 Blog Posts and their main classes that can be run with sbt or maven:
 
-* **[Akka Typed: Hello World in the new API](http://blog.akka.io/typed/2017/05/05/typed-intro)**
+* **[Akka Typed: Hello World in the new API](http://akka.io/blog//2017/05/05/typed-intro)**
   * Java
     * blog.classic.javadsl.HelloWorldApp1
     * blog.typed.javadsl.HelloWorldApp1
@@ -19,31 +19,35 @@ Blog Posts and their main classes that can be run with sbt or maven:
     * blog.typed.scaladsl.HelloWorldApp1
     * blog.classic.scaladsl.HelloWorldApp2
     * blog.typed.scaladsl.HelloWorldApp2
-* **[Akka Typed: Coexistence](http://blog.akka.io/typed/2017/05/06/typed-coexistence)**
+* **[Akka Typed: Coexistence](http://akka.io/blog//2017/05/06/typed-coexistence)**
   * Java
     * blog.typed.javadsl.CoexistenceApp1
     * blog.typed.javadsl.CoexistenceApp2
   * Scala
     * blog.typed.scaladsl.CoexistenceApp1
     * blog.typed.scaladsl.CoexistenceApp2
-* **[Akka Typed: Mutable vs. Immutable](http://blog.akka.io/typed/2017/05/08/typed-mutable-vs-immutable)**
+* **[Akka Typed: Mutable vs. Immutable](http://akka.io/blog//2017/05/08/typed-mutable-vs-immutable)**
   * Java
     * blog.typed.javadsl.MutableRoundRobinApp
     * blog.typed.javadsl.ImmutableRoundRobinApp
   * Scala
     * blog.typed.scaladsl.MutableRoundRobinApp
     * blog.typed.scaladsl.ImmutableRoundRobinApp
-* **[Akka Typed: Supervision](http://blog.akka.io/typed/2017/05/16/supervision)**
+* **[Akka Typed: Supervision](http://akka.io/blog//2017/05/16/supervision)**
   * Java
     * blog.typed.javadsl.FlakyWorkerApp
   * Scala
     * blog.typed.scaladsl.FlakyWorkerApp
-* **[Akka Typed: Signal](http://blog.akka.io/typed/2017/05/19/signals)**
+* **[Akka Typed: Signal](http://akka.io/blog//2017/05/19/signals)**
   * Java
     * blog.typed.javadsl.FlakyWorkerApp2
   * Scala
     * blog.typed.scaladsl.FlakyWorkerApp2
-    
+* **[Akka Typed: Timers](http://akka.io/blog//2017/05/26/timers)**
+  * Java
+    * blog.typed.javadsl.BuncherApp
+  * Scala
+    * blog.typed.scaladsl.BuncherApp    
 
 ## How to Run with sbt
 
