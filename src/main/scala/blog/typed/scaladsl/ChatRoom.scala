@@ -71,7 +71,7 @@ object ChatRoomApp {
         Actor.empty
       }
 
-    val system = ActorSystem("ChatRoomDemo", root)
+    val system = ActorSystem(root, "ChatRoomDemo")
     try {
       // Exit the system after ENTER is pressed
       StdIn.readLine()

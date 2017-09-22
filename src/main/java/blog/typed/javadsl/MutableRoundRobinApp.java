@@ -19,7 +19,7 @@ public class MutableRoundRobinApp {
 
       return Actor.empty();
     });
-    ActorSystem<Void> system = ActorSystem.create("RoundRobin", root);
+    ActorSystem<Void> system = ActorSystem.create(root, "RoundRobin");
     try {
       System.out.println("Press ENTER to exit the system");
       System.in.read();

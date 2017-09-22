@@ -137,7 +137,7 @@ object FlakyWorker2App {
 
       Actor.empty
     }
-    val system = ActorSystem[Nothing]("Sys", root)
+    val system = ActorSystem[Nothing](root, "Sys")
     try {
       // Exit the system after ENTER is pressed
       StdIn.readLine()

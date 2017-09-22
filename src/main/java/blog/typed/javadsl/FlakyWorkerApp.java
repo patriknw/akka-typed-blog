@@ -25,7 +25,7 @@ public class FlakyWorkerApp {
 
       return Actor.empty();
     });
-    ActorSystem<Void> system = ActorSystem.create("Sys", root);
+    ActorSystem<Void> system = ActorSystem.create(root, "Sys");
     try {
       System.out.println("Press ENTER to exit the system");
       System.in.read();

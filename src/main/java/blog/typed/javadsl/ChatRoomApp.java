@@ -19,7 +19,7 @@ public class ChatRoomApp {
 
       return Actor.empty();
     });
-    ActorSystem<Void> system = ActorSystem.create("ChatRoomDemo", root);
+    ActorSystem<Void> system = ActorSystem.create(root, "ChatRoomDemo");
     try {
       System.out.println("Press ENTER to exit the system");
       System.in.read();
