@@ -39,7 +39,7 @@ object MutableRoundRobinApp {
 
       Actor.empty
     }
-    val system = ActorSystem[Nothing]("RoundRobin", root)
+    val system = ActorSystem[Nothing](root, "RoundRobin")
     try {
       // Exit the system after ENTER is pressed
       StdIn.readLine()

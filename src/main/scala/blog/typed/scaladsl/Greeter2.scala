@@ -36,7 +36,7 @@ object HelloWorldApp2 {
 
       Actor.empty
     }
-    val system = ActorSystem[Nothing]("HelloWorld", root)
+    val system = ActorSystem[Nothing](root, "HelloWorld")
     try {
       println("Press ENTER to exit the system")
       StdIn.readLine()
