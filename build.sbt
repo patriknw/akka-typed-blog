@@ -5,8 +5,8 @@ version := "1.0"
 scalaVersion := "2.12.3"
 //scalaVersion := "2.11.11"
 
-lazy val akkaVersion = "2.5.5"
-lazy val cassandraPluginVersion = "0.55"
+lazy val akkaVersion = "2.5.6"
+lazy val cassandraPluginVersion = "0.56"
 
 libraryDependencies ++= Seq(
   "com.typesafe.akka" %% "akka-typed" % akkaVersion,

@@ -13,7 +13,7 @@ object RouterBot {
 
   val behavior: Behavior[BotMessage] =
     Actor.deferred[BotMessage] { ctx ⇒
-      val router = ctx.spawn(RandomRouter.clusterRouter(Routee.PingServiceKey), "pingRouter")
+      val router = ctx.spawn(RandomRouter.router(Routee.PingServiceKey), "pingRouter")
       val pongAdapter: ActorRef[Routee.Pong.type] = ctx.spawnAdapter(_ ⇒ GotPong)
 
       Actor.withTimers { timers ⇒

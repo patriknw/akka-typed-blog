@@ -2,7 +2,7 @@
 
 ## Akka Typed Version
 
-Use `akka-typed` **`2.5.5`** or later.
+Use `akka-typed` **`2.5.6`** or later.
 
 ## Blog Posts
 
