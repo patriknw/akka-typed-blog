@@ -1,8 +1,8 @@
 package blog.typed.cluster.scaladsl
 
-import akka.typed.scaladsl.Actor
 import akka.typed.ActorRef
 import akka.typed.Behavior
+import akka.typed.scaladsl.Actor
 
 object SequenceNumberGenerator {
 

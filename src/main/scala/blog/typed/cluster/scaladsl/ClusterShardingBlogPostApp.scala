@@ -9,8 +9,15 @@ import com.typesafe.config.{ Config, ConfigFactory }
 
 import akka.typed.scaladsl.adapter._
 import akka.typed.cluster.Cluster
+import akka.typed.cluster.sharding.ClusterSharding
+import blog.typed.persistence.scaladsl.BlogPost
+import akka.typed.Props
+import akka.typed.cluster.sharding.ClusterShardingSettings
+import blog.typed.persistence.scaladsl.BlogCommand
+import blog.typed.persistence.scaladsl.BlogCommand
+import blog.typed.persistence.scaladsl.PassivatePost
 
-object ClusterShardingApp {
+object ClusterShardingBlogPostApp {
 
   def main(args: Array[String]): Unit = {
     args.headOption match {
@@ -40,12 +47,24 @@ object ClusterShardingApp {
 
   def startNode(port: Int): Unit = {
     val system = ActorSystem("ClusterSystem", config(port))
+    val typedSystem = system.toTyped
+
+    ClusterSharding(typedSystem).spawn[BlogCommand](
+      behavior = BlogPost.shardingBehavior,
+      props = Props.empty,
+      typeKey = BlogPost.ShardingTypeName,
+      settings = ClusterShardingSettings(typedSystem),
+      maxNumberOfShards = BlogPost.MaxNumberOfShards,
+      handOffStopMessage = PassivatePost)
+
+    if (port == 2551)
+      system.spawn(BlogPostBot.behavior, "bot")
   }
 
   def config(port: Int): Config =
     ConfigFactory.parseString(s"""
       akka.remote.artery.canonical.port=$port
-    """).withFallback(ConfigFactory.load())
+    """).withFallback(ConfigFactory.load("cluster.conf"))
 
   /**
    * To make the sample easier to run we kickstart a Cassandra instance to

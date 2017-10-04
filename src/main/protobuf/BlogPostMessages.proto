@@ -1,0 +1,57 @@
+/**
+ * Copyright (C) 2014-2017 Lightbend Inc. <http://www.lightbend.com>
+ */
+package blog.typed.persistence.scaladsl;
+
+option java_package = "blog.typed.persistence.scaladsl.protobuf";
+option optimize_for = SPEED;
+
+// state
+
+message BlogState {
+  optional PostContent content = 1;
+  optional bool published = 2;
+}
+
+message PostContent {
+  required string postId = 1;
+  optional string title = 2;
+  optional string body = 3;
+}
+
+// commands
+
+message AddPost {
+  required PostContent content = 1;
+  required string replyTo = 2;
+}
+
+message AddPostDone {
+  required string postId = 1;
+}
+
+message ChangeBody {
+  required string newBody = 1;
+  required string replyTo = 2;
+}
+
+message Publish {
+  required string replyTo = 1;
+}
+
+// events
+
+message PostAdded {
+  required string postId = 1;
+  required PostContent content = 2;
+}
+
+message BodyChanged {
+  required string postId = 1;
+  required string newBody = 2;
+}
+
+message Published {
+  required string postId = 1;
+}
+
