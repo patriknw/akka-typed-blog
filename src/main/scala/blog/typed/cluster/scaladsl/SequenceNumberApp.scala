@@ -6,6 +6,7 @@ import akka.typed.cluster.ClusterSingleton
 import akka.typed.cluster.ClusterSingletonSettings
 import akka.typed.scaladsl.adapter._
 import com.typesafe.config.{ Config, ConfigFactory }
+import akka.typed.ActorRef
 
 object SequenceNumberApp {
 
@@ -34,12 +35,13 @@ object SequenceNumberApp {
     val system = ActorSystem("ClusterSystem", config(port))
     val typedSystem = system.toTyped
 
-    val singletonProxy = ClusterSingleton(typedSystem).spawn(
-      behavior = SequenceNumberGenerator.generator(),
-      singletonName = "seqNr",
-      props = Props.empty,
-      settings = ClusterSingletonSettings(typedSystem),
-      terminationMessage = SequenceNumberGenerator.Stop)
+    val singletonProxy: ActorRef[SequenceNumberGenerator.Message] =
+      ClusterSingleton(typedSystem).spawn(
+        behavior = SequenceNumberGenerator.generator(),
+        singletonName = "seqNr",
+        props = Props.empty,
+        settings = ClusterSingletonSettings(typedSystem),
+        terminationMessage = SequenceNumberGenerator.Stop)
 
     system.spawn(SequenceNumberBot.behavior(singletonProxy), "bot")
   }

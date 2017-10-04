@@ -1,14 +1,14 @@
 package blog.typed.cluster.scaladsl
 
-import akka.typed.scaladsl.adapter._
-import akka.typed.ActorRef
-import akka.typed.scaladsl.Actor
 import akka.cluster.ddata.GCounter
-import akka.typed.cluster.ddata.scaladsl.Replicator
-import akka.typed.Behavior
-import akka.cluster.ddata.ReplicatedData
 import akka.cluster.ddata.GCounterKey
+import akka.cluster.ddata.ReplicatedData
+import akka.typed.ActorRef
+import akka.typed.Behavior
 import akka.typed.cluster.ddata.scaladsl.DistributedData
+import akka.typed.cluster.ddata.scaladsl.Replicator
+import akka.typed.scaladsl.Actor
+import akka.typed.scaladsl.adapter._
 
 object Counter {
   sealed trait ClientCommand

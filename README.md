@@ -2,7 +2,7 @@
 
 ## Akka Typed Version
 
-Use `akka-typed` **`2.5.6`** or later.
+Use `akka-typed` **`2.5.7-M1`** or later.
 
 ## Blog Posts
 
@@ -52,9 +52,23 @@ Blog Posts and their main classes that can be run with sbt or maven:
   * Local router 
     * blog.typed.cluster.scaladsl.LocalRouterApp
   * Cluster router 
-    * blog.typed.cluster.scaladsl.ClusterRouterApp 2551
-    * blog.typed.cluster.scaladsl.ClusterRouterApp 2552
-    * blog.typed.cluster.scaladsl.ClusterRouterApp 2553
+    * sbt "runMain blog.typed.cluster.scaladsl.ClusterRouterApp 2551"
+    * sbt "runMain blog.typed.cluster.scaladsl.ClusterRouterApp 2552"
+    * sbt "runMain blog.typed.cluster.scaladsl.ClusterRouterApp 2553"
+* **[Akka Typed: New Cluster Tools API](https://akka.io/blog/2017/10/04/typed-cluster-tools)**
+  * Distributed Data
+    * sbt "runMain blog.typed.cluster.scaladsl.CounterApp 2551"
+    * sbt "runMain blog.typed.cluster.scaladsl.CounterApp 2552"
+    * sbt "runMain blog.typed.cluster.scaladsl.CounterApp 2553"
+  * Singleton
+    * sbt "runMain blog.typed.cluster.scaladsl.SequenceNumberApp 2551"
+    * sbt "runMain blog.typed.cluster.scaladsl.SequenceNumberApp 2552"
+    * sbt "runMain blog.typed.cluster.scaladsl.SequenceNumberApp 2553"
+  * Sharding
+    * sbt "runMain blog.typed.cluster.scaladsl.ClusterShardingBlogPostApp cassandra"
+    * sbt "runMain blog.typed.cluster.scaladsl.ClusterShardingBlogPostApp 2551"
+    * sbt "runMain blog.typed.cluster.scaladsl.ClusterShardingBlogPostApp 2552"
+    * sbt "runMain blog.typed.cluster.scaladsl.ClusterShardingBlogPostApp 2553"
 
 ## How to Run with sbt
 
