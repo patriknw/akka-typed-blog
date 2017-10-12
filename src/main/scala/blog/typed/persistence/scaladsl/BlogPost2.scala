@@ -6,7 +6,7 @@ import akka.typed.Behavior
 import akka.typed.persistence.scaladsl.PersistentActor
 import akka.typed.persistence.scaladsl.PersistentActor._
 
-final class BlogPost3 {
+final class BlogPost2 {
 
   def behavior: Behavior[BlogCommand] =
     PersistentActor.immutable[BlogCommand, BlogEvent, BlogState](

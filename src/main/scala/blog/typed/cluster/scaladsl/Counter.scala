@@ -14,6 +14,7 @@ object Counter {
   sealed trait ClientCommand
   final case object Increment extends ClientCommand
   final case class GetValue(replyTo: ActorRef[Int]) extends ClientCommand
+
   private sealed trait InternalMsg extends ClientCommand
   private case class InternalUpdateResponse[A <: ReplicatedData](rsp: Replicator.UpdateResponse[A]) extends InternalMsg
   private case class InternalGetResponse[A <: ReplicatedData](rsp: Replicator.GetResponse[A]) extends InternalMsg
@@ -27,6 +28,8 @@ object Counter {
       implicit val cluster = akka.cluster.Cluster(ctx.system.toUntyped)
       val replicator: ActorRef[Replicator.Command] = DistributedData(ctx.system).replicator
 
+      // use message adapters to map the external messages (replies) to the message types
+      // that this actor can handle (see InternalMsg)
       val updateResponseAdapter: ActorRef[Replicator.UpdateResponse[GCounter]] =
         ctx.spawnAdapter(InternalUpdateResponse.apply)
 
