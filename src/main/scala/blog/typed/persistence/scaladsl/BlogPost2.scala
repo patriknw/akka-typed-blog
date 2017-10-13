@@ -20,17 +20,17 @@ final class BlogPost2 {
       cmd match {
         case AddPost(content, replyTo) ⇒
           val evt = PostAdded(content.postId, content)
-          Persist[BlogEvent, BlogState](evt).andThen { state2 ⇒
+          Persist(evt).andThen { state2 ⇒
             // After persist is done additional side effects can be performed
             replyTo ! AddPostDone(content.postId)
           }
         case ChangeBody(newBody, replyTo) ⇒
           val evt = BodyChanged(state.postId, newBody)
-          Persist[BlogEvent, BlogState](evt).andThen { _ ⇒
+          Persist(evt).andThen { _ ⇒
             replyTo ! Done
           }
         case Publish(replyTo) ⇒
-          Persist[BlogEvent, BlogState](Published(state.postId)).andThen { _ ⇒
+          Persist(Published(state.postId)).andThen { _ ⇒
             replyTo ! Done
           }
         case GetPost(replyTo) ⇒
