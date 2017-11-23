@@ -1,7 +1,6 @@
 package blog.typed.persistence.scaladsl
 
 import akka.Done
-import akka.actor.Status
 import akka.typed.Behavior
 import akka.typed.persistence.scaladsl.PersistentActor
 import akka.typed.persistence.scaladsl.PersistentActor._
@@ -12,36 +11,36 @@ final class BlogPost2 {
     PersistentActor.immutable[BlogCommand, BlogEvent, BlogState](
       persistenceId = "abc",
       initialState = BlogState.empty,
-      actions,
-      applyEvent)
+      commandHandler,
+      eventHandler)
 
-  private val actions: Actions[BlogCommand, BlogEvent, BlogState] =
-    Actions { (ctx, cmd, state) ⇒
+  private val commandHandler: CommandHandler[BlogCommand, BlogEvent, BlogState] =
+    CommandHandler { (_, state, cmd) ⇒
       cmd match {
         case AddPost(content, replyTo) ⇒
           val evt = PostAdded(content.postId, content)
-          Persist(evt).andThen { state2 ⇒
+          Effect.persist(evt).andThen { state2 ⇒
             // After persist is done additional side effects can be performed
             replyTo ! AddPostDone(content.postId)
           }
         case ChangeBody(newBody, replyTo) ⇒
           val evt = BodyChanged(state.postId, newBody)
-          Persist(evt).andThen { _ ⇒
+          Effect.persist(evt).andThen { _ ⇒
             replyTo ! Done
           }
         case Publish(replyTo) ⇒
-          Persist(Published(state.postId)).andThen { _ ⇒
+          Effect.persist(Published(state.postId)).andThen { blog ⇒
             replyTo ! Done
           }
         case GetPost(replyTo) ⇒
           replyTo ! state.content.get
-          PersistNothing()
+          Effect.none
         case PassivatePost =>
-          Stop()
+          Effect.stop
       }
     }
 
-  private def applyEvent(event: BlogEvent, state: BlogState): BlogState =
+  private def eventHandler(state: BlogState, event: BlogEvent): BlogState =
     event match {
       case PostAdded(postId, content) ⇒
         state.withContent(content)
