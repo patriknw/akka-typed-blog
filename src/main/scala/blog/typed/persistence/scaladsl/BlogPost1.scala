@@ -1,7 +1,7 @@
 package blog.typed.persistence.scaladsl
 
-import akka.typed.persistence.scaladsl.PersistentActor
 import akka.typed.Behavior
+import akka.typed.persistence.scaladsl.PersistentActor
 
 object BlogPost1 {
 
@@ -9,8 +9,8 @@ object BlogPost1 {
     PersistentActor.immutable[BlogCommand, BlogEvent, BlogState](
       persistenceId = "abc",
       initialState = BlogState.empty,
-      actions = PersistentActor.Actions { (ctx, cmd, state) ⇒ ??? },
-      applyEvent = (evt, state) ⇒ ???)
+      commandHandler = PersistentActor.CommandHandler { (ctx, state, cmd) ⇒ ??? },
+      eventHandler = (state, evt) ⇒ ???)
 
 }
 

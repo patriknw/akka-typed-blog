@@ -2,11 +2,9 @@ package blog.typed.persistence.scaladsl
 
 import akka.Done
 import akka.typed.Behavior
+import akka.typed.cluster.sharding.EntityTypeKey
 import akka.typed.persistence.scaladsl.PersistentActor
 import akka.typed.persistence.scaladsl.PersistentActor._
-import akka.typed.cluster.sharding.ClusterSharding
-import akka.typed.cluster.sharding.EntityTypeKey
-import akka.typed.scaladsl.Actor
 
 object BlogPost {
 
@@ -21,8 +19,8 @@ object BlogPost {
     PersistentActor.immutable[BlogCommand, BlogEvent, BlogState](
       persistenceId = "abc",
       initialState = BlogState.empty,
-      actions,
-      applyEvent)
+      commandHandler,
+      eventHandler)
 
   /**
    * Persistent actor in Cluster Sharding, when the persistenceId is not known
@@ -33,55 +31,55 @@ object BlogPost {
     PersistentActor.persistentEntity[BlogCommand, BlogEvent, BlogState](
       persistenceIdFromActorName = name => ShardingTypeName.name + "-" + name,
       initialState = BlogState.empty,
-      actions,
-      applyEvent)
+      commandHandler,
+      eventHandler)
 
-  private val actions: Actions[BlogCommand, BlogEvent, BlogState] = Actions.byState {
+  private def commandHandler: CommandHandler[BlogCommand, BlogEvent, BlogState] = CommandHandler.byState {
     case state if state.isEmpty  ⇒ initial
     case state if !state.isEmpty ⇒ postAdded
   }
 
-  private val initial: Actions[BlogCommand, BlogEvent, BlogState] =
-    Actions { (ctx, cmd, state) ⇒
+  private def initial: CommandHandler[BlogCommand, BlogEvent, BlogState] =
+    CommandHandler { (ctx, state, cmd) ⇒
       cmd match {
         case AddPost(content, replyTo) ⇒
           val evt = PostAdded(content.postId, content)
-          Persist(evt).andThen { state2 ⇒
+          Effect.persist(evt).andThen { state2 ⇒
             // After persist is done additional side effects can be performed
             replyTo ! AddPostDone(content.postId)
           }
         case PassivatePost =>
-          Stop()
+          Effect.stop
         case other ⇒
-          Unhandled()
+          Effect.unhandled
       }
     }
 
-  private val postAdded: Actions[BlogCommand, BlogEvent, BlogState] = {
-    Actions { (ctx, cmd, state) ⇒
+  private def postAdded: CommandHandler[BlogCommand, BlogEvent, BlogState] = {
+    CommandHandler { (ctx, state, cmd) ⇒
       cmd match {
         case ChangeBody(newBody, replyTo) ⇒
           val evt = BodyChanged(state.postId, newBody)
-          Persist(evt).andThen { _ ⇒
+          Effect.persist(evt).andThen { _ ⇒
             replyTo ! Done
           }
         case Publish(replyTo) ⇒
-          Persist(Published(state.postId)).andThen { _ ⇒
+          Effect.persist(Published(state.postId)).andThen { _ ⇒
             println(s"Blog post ${state.postId} was published")
             replyTo ! Done
           }
         case GetPost(replyTo) ⇒
           replyTo ! state.content.get
-          PersistNothing()
+          Effect.none
         case _: AddPost ⇒
-          Unhandled()
+          Effect.unhandled
         case PassivatePost =>
-          Stop()
+          Effect.stop
       }
     }
   }
 
-  private def applyEvent(event: BlogEvent, state: BlogState): BlogState =
+  private def eventHandler(state: BlogState, event: BlogEvent): BlogState =
     event match {
       case PostAdded(postId, content) ⇒
         state.withContent(content)

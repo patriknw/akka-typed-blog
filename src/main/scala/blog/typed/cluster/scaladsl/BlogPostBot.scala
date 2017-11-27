@@ -22,7 +22,7 @@ object BlogPostBot {
   private case class InternalAddPostDone(postId: String) extends BotMessage
   private case object InternalDone extends BotMessage
 
-  def behavior(): Behavior[BotMessage] =
+  def behavior: Behavior[BotMessage] =
     Actor.deferred[BotMessage] { ctx ⇒
 
       val sharding = ClusterSharding(ctx.system)
