@@ -4,10 +4,10 @@ import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.util.concurrent.ThreadLocalRandom;
 
-import akka.typed.Behavior;
-import akka.typed.PostStop;
-import akka.typed.PreRestart;
-import akka.typed.javadsl.Actor;
+import akka.actor.typed.Behavior;
+import akka.actor.typed.PostStop;
+import akka.actor.typed.PreRestart;
+import akka.actor.typed.javadsl.Actor;
 
 public abstract class FlakyWorker2 {
   private FlakyWorker2() {

@@ -2,10 +2,10 @@ package blog.typed.javadsl;
 
 import java.io.IOException;
 
-import akka.typed.ActorRef;
-import akka.typed.ActorSystem;
-import akka.typed.Behavior;
-import akka.typed.javadsl.Actor;
+import akka.actor.typed.ActorRef;
+import akka.actor.typed.ActorSystem;
+import akka.actor.typed.Behavior;
+import akka.actor.typed.javadsl.Actor;
 
 public class ImmutableRoundRobinApp {
 

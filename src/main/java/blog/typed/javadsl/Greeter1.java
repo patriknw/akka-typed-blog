@@ -1,9 +1,9 @@
 package blog.typed.javadsl;
 
-import akka.typed.Behavior;
-import akka.typed.javadsl.Actor;
-import akka.typed.javadsl.Actor.MutableBehavior;
-import akka.typed.javadsl.Actor.Receive;
+import akka.actor.typed.Behavior;
+import akka.actor.typed.javadsl.Actor;
+import akka.actor.typed.javadsl.Actor.MutableBehavior;
+import akka.actor.typed.javadsl.Actor.Receive;
 
 public class Greeter1 extends MutableBehavior<Greeter1.Command> {
 

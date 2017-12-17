@@ -2,10 +2,10 @@ package blog.typed.scaladsl
 
 import scala.io.StdIn
 
-import akka.typed.ActorSystem
-import akka.typed.Behavior
-import akka.typed.scaladsl.Actor
-import akka.typed.ActorRef
+import akka.actor.typed.ActorSystem
+import akka.actor.typed.Behavior
+import akka.actor.typed.scaladsl.Actor
+import akka.actor.typed.ActorRef
 
 object Greeter2 {
   sealed trait Command

@@ -2,11 +2,11 @@ package blog.typed.scaladsl
 
 import scala.io.StdIn
 
-import akka.typed.ActorRef
-import akka.typed.ActorSystem
-import akka.typed.Behavior
-import akka.typed.scaladsl.Actor
-import akka.typed.scaladsl.ActorContext
+import akka.actor.typed.ActorRef
+import akka.actor.typed.ActorSystem
+import akka.actor.typed.Behavior
+import akka.actor.typed.scaladsl.Actor
+import akka.actor.typed.scaladsl.ActorContext
 
 object MutableRoundRobin {
   def roundRobinBehavior[T](numberOfWorkers: Int, worker: Behavior[T]): Behavior[T] =

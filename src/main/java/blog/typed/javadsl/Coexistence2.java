@@ -1,11 +1,11 @@
 package blog.typed.javadsl;
 
 import akka.actor.AbstractActor;
-import akka.typed.ActorRef;
-import akka.typed.Behavior;
-import akka.typed.javadsl.Adapter;
-import static akka.typed.javadsl.Actor.same;
-import static akka.typed.javadsl.Actor.stopped;
+import akka.actor.typed.ActorRef;
+import akka.actor.typed.Behavior;
+import akka.actor.typed.javadsl.Adapter;
+import static akka.actor.typed.javadsl.Actor.same;
+import static akka.actor.typed.javadsl.Actor.stopped;
 
 
 public abstract class Coexistence2 {
@@ -18,7 +18,7 @@ public abstract class Coexistence2 {
     }
 
     public static class Ping {
-      public final akka.typed.ActorRef<Pong> replyTo;
+      public final akka.actor.typed.ActorRef<Pong> replyTo;
 
       public Ping(ActorRef<Pong> replyTo) {
         this.replyTo = replyTo;
@@ -32,7 +32,7 @@ public abstract class Coexistence2 {
     }
 
     public static Behavior<Command> behavior() {
-      return akka.typed.javadsl.Actor.deferred(context -> {
+      return akka.actor.typed.javadsl.Actor.deferred(context -> {
         akka.actor.ActorRef second =
           Adapter.actorOf(context, MyUntyped2.props(), "second");
 
@@ -41,14 +41,14 @@ public abstract class Coexistence2 {
         second.tell(new MyTyped2.Ping(context.getSelf().narrow()),
           Adapter.toUntyped(context.getSelf()));
 
-        return akka.typed.javadsl.Actor.immutable(MyTyped2.Command.class)
+        return akka.actor.typed.javadsl.Actor.immutable(MyTyped2.Command.class)
           .onMessage(MyTyped2.Pong.class, (ctx, msg) -> {
             // it's not possible to get the sender, that must be sent in message
             System.out.println(ctx.getSelf() + " got Pong");
             Adapter.stop(ctx, second);
             return same();
           })
-          .onSignal(akka.typed.Terminated.class, (ctx, sig) -> {
+          .onSignal(akka.actor.typed.Terminated.class, (ctx, sig) -> {
             System.out.println(ctx.getSelf() + " observed termination of " + sig.ref());
             return stopped();
           })

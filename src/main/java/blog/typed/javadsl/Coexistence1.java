@@ -1,10 +1,10 @@
 package blog.typed.javadsl;
 
 import akka.actor.AbstractActor;
-import akka.typed.ActorRef;
-import akka.typed.Behavior;
-import akka.typed.javadsl.Adapter;
-import static akka.typed.javadsl.Actor.same;
+import akka.actor.typed.ActorRef;
+import akka.actor.typed.Behavior;
+import akka.actor.typed.javadsl.Adapter;
+import static akka.actor.typed.javadsl.Actor.same;
 
 
 public abstract class Coexistence1 {
@@ -18,7 +18,7 @@ public abstract class Coexistence1 {
       return akka.actor.Props.create(MyUntyped1.class);
     }
 
-    private final akka.typed.ActorRef<MyTyped1.Command> second =
+    private final akka.actor.typed.ActorRef<MyTyped1.Command> second =
         Adapter.spawn(getContext(), MyTyped1.behavior(), "second");
 
     @Override
@@ -50,7 +50,7 @@ public abstract class Coexistence1 {
     }
 
     public static class Ping implements Command {
-      public final akka.typed.ActorRef<Pong> replyTo;
+      public final akka.actor.typed.ActorRef<Pong> replyTo;
 
       public Ping(ActorRef<Pong> replyTo) {
         this.replyTo = replyTo;
@@ -61,7 +61,7 @@ public abstract class Coexistence1 {
     }
 
     public static Behavior<Command> behavior() {
-      return akka.typed.javadsl.Actor.immutable(MyTyped1.Command.class)
+      return akka.actor.typed.javadsl.Actor.immutable(MyTyped1.Command.class)
         .onMessage(MyTyped1.Ping.class, (ctx, msg) -> {
           System.out.println(ctx.getSelf() + " got Ping from " + msg.replyTo);
           msg.replyTo.tell(new Pong());

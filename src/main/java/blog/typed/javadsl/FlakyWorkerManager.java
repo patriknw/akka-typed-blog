@@ -5,14 +5,14 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import scala.concurrent.duration.Duration;
 
-import akka.typed.ActorRef;
-import akka.typed.Behavior;
-import akka.typed.PostStop;
-import akka.typed.PreRestart;
-import akka.typed.SupervisorStrategy;
-import akka.typed.Terminated;
-import akka.typed.javadsl.Actor;
-import akka.typed.javadsl.ActorContext;
+import akka.actor.typed.ActorRef;
+import akka.actor.typed.Behavior;
+import akka.actor.typed.PostStop;
+import akka.actor.typed.PreRestart;
+import akka.actor.typed.SupervisorStrategy;
+import akka.actor.typed.Terminated;
+import akka.actor.typed.javadsl.Actor;
+import akka.actor.typed.javadsl.ActorContext;
 
 public abstract class FlakyWorkerManager {
   private FlakyWorkerManager() {

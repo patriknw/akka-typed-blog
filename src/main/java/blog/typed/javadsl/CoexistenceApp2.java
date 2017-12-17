@@ -3,7 +3,7 @@ package blog.typed.javadsl;
 import java.io.IOException;
 import blog.typed.javadsl.Coexistence2.MyTyped2;
 
-import akka.typed.javadsl.Adapter;
+import akka.actor.typed.javadsl.Adapter;
 
 public class CoexistenceApp2 {
   public static void main(String[] args) throws IOException {

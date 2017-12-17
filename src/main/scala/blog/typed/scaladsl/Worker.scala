@@ -1,7 +1,7 @@
 package blog.typed.scaladsl
 
-import akka.typed.Behavior
-import akka.typed.scaladsl.Actor
+import akka.actor.typed.Behavior
+import akka.actor.typed.scaladsl.Actor
 
 object Worker {
   sealed trait Command

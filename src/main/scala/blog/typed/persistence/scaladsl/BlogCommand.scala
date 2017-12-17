@@ -1,6 +1,6 @@
 package blog.typed.persistence.scaladsl
 
-import akka.typed.ActorRef
+import akka.actor.typed.ActorRef
 import akka.Done
 import java.io.Serializable
 

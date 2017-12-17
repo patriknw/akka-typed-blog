@@ -1,9 +1,9 @@
 package blog.typed.cluster.scaladsl
 
 import scala.concurrent.duration._
-import akka.typed.ActorRef
-import akka.typed.Behavior
-import akka.typed.scaladsl.Actor
+import akka.actor.typed.ActorRef
+import akka.actor.typed.Behavior
+import akka.actor.typed.scaladsl.Actor
 
 object SequenceNumberBot {
 
