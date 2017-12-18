@@ -1,10 +1,10 @@
 package blog.typed.cluster.scaladsl
 
 import akka.actor.ActorSystem
-import akka.typed.Props
-import akka.typed.cluster.ClusterSingleton
-import akka.typed.cluster.ClusterSingletonSettings
-import akka.typed.scaladsl.adapter._
+import akka.actor.typed.Props
+import akka.cluster.typed.ClusterSingleton
+import akka.cluster.typed.ClusterSingletonSettings
+import akka.actor.typed.scaladsl.adapter._
 import com.typesafe.config.{ Config, ConfigFactory }
 
 object CounterApp {

@@ -1,12 +1,12 @@
 package blog.typed.javadsl;
 
-import akka.typed.ActorRef;
-import akka.typed.Behavior;
-import akka.typed.Signal;
-import akka.typed.javadsl.Actor;
-import akka.typed.javadsl.Actor.MutableBehavior;
-import akka.typed.javadsl.Actor.Receive;
-import akka.typed.javadsl.ActorContext;
+import akka.actor.typed.ActorRef;
+import akka.actor.typed.Behavior;
+import akka.actor.typed.Signal;
+import akka.actor.typed.javadsl.Actor;
+import akka.actor.typed.javadsl.Actor.MutableBehavior;
+import akka.actor.typed.javadsl.Actor.Receive;
+import akka.actor.typed.javadsl.ActorContext;
 
 public class MutableRoundRobin<T> extends MutableBehavior<T> {
 

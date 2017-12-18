@@ -5,9 +5,9 @@ import java.util.concurrent.CountDownLatch
 
 import akka.actor.ActorSystem
 import akka.persistence.cassandra.testkit.CassandraLauncher
-import akka.typed.Props
-import akka.typed.cluster.sharding.{ClusterSharding, ClusterShardingSettings}
-import akka.typed.scaladsl.adapter._
+import akka.actor.typed.Props
+import akka.cluster.sharding.typed.{ClusterSharding, ClusterShardingSettings}
+import akka.actor.typed.scaladsl.adapter._
 import blog.typed.persistence.scaladsl.{BlogCommand, BlogPost, PassivatePost}
 import com.typesafe.config.{Config, ConfigFactory}
 

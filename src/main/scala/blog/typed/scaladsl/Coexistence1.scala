@@ -2,11 +2,11 @@ package blog.typed.scaladsl
 
 import scala.io.StdIn
 
-import akka.typed.Behavior
-import akka.typed.scaladsl.Actor.same
+import akka.actor.typed.Behavior
+import akka.actor.typed.scaladsl.Actor.same
 
 object Coexistence1 {
-  import akka.typed.scaladsl.adapter._
+  import akka.actor.typed.scaladsl.adapter._
 
   object MyUntyped1 {
     def props(): akka.actor.Props = akka.actor.Props(new MyUntyped1)
@@ -15,7 +15,7 @@ object Coexistence1 {
   class MyUntyped1 extends akka.actor.Actor {
 
     // context.spawn is an implicit extension method
-    val second: akka.typed.ActorRef[MyTyped1.Command] =
+    val second: akka.actor.typed.ActorRef[MyTyped1.Command] =
       context.spawn(MyTyped1.behavior, "second")
 
     // context.watch is an implicit extension method
@@ -23,7 +23,7 @@ object Coexistence1 {
 
     // self can be used as the `replyTo` parameter here because
     // there is an implicit conversion from akka.actor.ActorRef to
-    // akka.typed.ActorRef
+    // akka.actor.typed.ActorRef
     second ! MyTyped1.Ping(self)
 
     override def receive = {
@@ -40,11 +40,11 @@ object Coexistence1 {
 
   object MyTyped1 {
     sealed trait Command
-    final case class Ping(replyTo: akka.typed.ActorRef[Pong.type]) extends Command
+    final case class Ping(replyTo: akka.actor.typed.ActorRef[Pong.type]) extends Command
     case object Pong
 
     val behavior: Behavior[Command] =
-      akka.typed.scaladsl.Actor.immutable { (ctx, msg) =>
+      akka.actor.typed.scaladsl.Actor.immutable { (ctx, msg) =>
         msg match {
           case Ping(replyTo) =>
             println(s"${ctx.self} got Ping from $replyTo")

@@ -1,6 +1,6 @@
 package blog.typed.cluster.scaladsl
 
-import akka.typed.scaladsl.adapter._
+import akka.actor.typed.scaladsl.adapter._
 
 object LocalRouterApp {
   def main(args: Array[String]): Unit = {

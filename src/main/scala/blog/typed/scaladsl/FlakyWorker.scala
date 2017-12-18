@@ -5,10 +5,10 @@ import java.util.concurrent.ThreadLocalRandom
 import scala.concurrent.duration._
 import scala.io.StdIn
 
-import akka.typed.ActorSystem
-import akka.typed.Behavior
-import akka.typed.SupervisorStrategy
-import akka.typed.scaladsl.Actor
+import akka.actor.typed.ActorSystem
+import akka.actor.typed.Behavior
+import akka.actor.typed.SupervisorStrategy
+import akka.actor.typed.scaladsl.Actor
 
 object FlakyWorker {
   sealed trait Command

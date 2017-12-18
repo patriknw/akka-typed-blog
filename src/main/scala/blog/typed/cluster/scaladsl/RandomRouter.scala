@@ -6,14 +6,14 @@ import akka.actor.Address
 import akka.cluster.ClusterEvent.ReachabilityEvent
 import akka.cluster.ClusterEvent.ReachableMember
 import akka.cluster.ClusterEvent.UnreachableMember
-import akka.typed.ActorRef
-import akka.typed.Behavior
-import akka.typed.cluster.Cluster
-import akka.typed.cluster.Subscribe
-import akka.typed.receptionist.Receptionist
-import akka.typed.receptionist.Receptionist.Listing
-import akka.typed.receptionist.Receptionist.ServiceKey
-import akka.typed.scaladsl.Actor
+import akka.actor.typed.ActorRef
+import akka.actor.typed.Behavior
+import akka.cluster.typed.Cluster
+import akka.cluster.typed.Subscribe
+import akka.actor.typed.receptionist.Receptionist
+import akka.actor.typed.receptionist.Receptionist.Listing
+import akka.actor.typed.receptionist.Receptionist.ServiceKey
+import akka.actor.typed.scaladsl.Actor
 
 object RandomRouter {
 

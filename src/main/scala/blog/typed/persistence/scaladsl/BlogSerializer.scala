@@ -5,9 +5,9 @@ import akka.serialization.SerializerWithStringManifest
 import akka.serialization.BaseSerializer
 import blog.typed.persistence.scaladsl.protobuf.BlogPostMessages
 import java.io.NotSerializableException
-import akka.typed.scaladsl.adapter._
-import akka.typed.cluster.ActorRefResolver
-import akka.typed.ActorRef
+import akka.actor.typed.scaladsl.adapter._
+import akka.cluster.typed.ActorRefResolver
+import akka.actor.typed.ActorRef
 
 class BlogSerializer(val system: akka.actor.ExtendedActorSystem)
   extends SerializerWithStringManifest with BaseSerializer {

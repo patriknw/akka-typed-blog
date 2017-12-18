@@ -1,7 +1,7 @@
 package blog.typed.cluster.scaladsl
 
 import akka.actor.ActorSystem
-import akka.typed.scaladsl.adapter._
+import akka.actor.typed.scaladsl.adapter._
 import com.typesafe.config.{ Config, ConfigFactory }
 
 object ClusterRouterApp {

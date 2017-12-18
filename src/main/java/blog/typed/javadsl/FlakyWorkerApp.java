@@ -4,11 +4,11 @@ import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 import scala.concurrent.duration.Duration;
 
-import akka.typed.ActorRef;
-import akka.typed.ActorSystem;
-import akka.typed.Behavior;
-import akka.typed.SupervisorStrategy;
-import akka.typed.javadsl.Actor;
+import akka.actor.typed.ActorRef;
+import akka.actor.typed.ActorSystem;
+import akka.actor.typed.Behavior;
+import akka.actor.typed.SupervisorStrategy;
+import akka.actor.typed.javadsl.Actor;
 
 public class FlakyWorkerApp {
 

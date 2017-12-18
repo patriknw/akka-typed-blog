@@ -5,19 +5,19 @@ import java.util.concurrent.ThreadLocalRandom
 import scala.concurrent.duration._
 import scala.io.StdIn
 
-import akka.typed.ActorSystem
-import akka.typed.Behavior
-import akka.typed.SupervisorStrategy
-import akka.typed.scaladsl.Actor
+import akka.actor.typed.ActorSystem
+import akka.actor.typed.Behavior
+import akka.actor.typed.SupervisorStrategy
+import akka.actor.typed.scaladsl.Actor
 import java.io.FileWriter
 import java.io.Writer
 import java.io.BufferedWriter
 import java.io.PrintWriter
-import akka.typed.PreRestart
-import akka.typed.PostStop
-import akka.typed.ActorRef
-import akka.typed.scaladsl.ActorContext
-import akka.typed.Terminated
+import akka.actor.typed.PreRestart
+import akka.actor.typed.PostStop
+import akka.actor.typed.ActorRef
+import akka.actor.typed.scaladsl.ActorContext
+import akka.actor.typed.Terminated
 
 object FlakyWorker2 {
 

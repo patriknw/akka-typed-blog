@@ -1,14 +1,14 @@
 package blog.typed.cluster.scaladsl
 
 import scala.concurrent.duration._
-import akka.typed.ActorRef
-import akka.typed.Behavior
-import akka.typed.scaladsl.Actor
-import akka.typed.cluster.sharding.ClusterSharding
+import akka.actor.typed.ActorRef
+import akka.actor.typed.Behavior
+import akka.actor.typed.scaladsl.Actor
+import akka.cluster.sharding.typed.ClusterSharding
 import java.util.UUID
 import blog.typed.persistence.scaladsl.PostContent
 import blog.typed.persistence.scaladsl.BlogPost
-import akka.typed.cluster.sharding.EntityRef
+import akka.cluster.sharding.typed.EntityRef
 import blog.typed.persistence.scaladsl.BlogCommand
 import blog.typed.persistence.scaladsl.AddPost
 import blog.typed.persistence.scaladsl.AddPostDone

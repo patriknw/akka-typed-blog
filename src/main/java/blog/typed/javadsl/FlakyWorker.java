@@ -2,8 +2,8 @@ package blog.typed.javadsl;
 
 import java.util.concurrent.ThreadLocalRandom;
 
-import akka.typed.Behavior;
-import akka.typed.javadsl.Actor;
+import akka.actor.typed.Behavior;
+import akka.actor.typed.javadsl.Actor;
 
 public abstract class FlakyWorker {
   private FlakyWorker() {

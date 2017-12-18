@@ -1,8 +1,8 @@
 package blog.typed.javadsl;
 
-import akka.typed.ActorRef;
-import akka.typed.Behavior;
-import akka.typed.javadsl.Actor;
+import akka.actor.typed.ActorRef;
+import akka.actor.typed.Behavior;
+import akka.actor.typed.javadsl.Actor;
 
 public abstract class ImmutableRoundRobin {
   private ImmutableRoundRobin() {

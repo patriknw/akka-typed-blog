@@ -1,10 +1,10 @@
 package blog.typed.cluster.scaladsl
 
-import akka.typed.cluster.ActorRefResolver
+import akka.cluster.typed.ActorRefResolver
 import akka.actor.ExtendedActorSystem
 import akka.serialization.SerializerWithStringManifest
 import java.nio.charset.StandardCharsets
-import akka.typed.scaladsl.adapter._
+import akka.actor.typed.scaladsl.adapter._
 
 /**
  * serialization-bindings for this is configured in cluster.conf

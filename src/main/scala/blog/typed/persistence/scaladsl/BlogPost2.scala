@@ -1,9 +1,9 @@
 package blog.typed.persistence.scaladsl
 
 import akka.Done
-import akka.typed.Behavior
-import akka.typed.persistence.scaladsl.PersistentActor
-import akka.typed.persistence.scaladsl.PersistentActor._
+import akka.actor.typed.Behavior
+import akka.persistence.typed.scaladsl.PersistentActor
+import akka.persistence.typed.scaladsl.PersistentActor._
 
 final class BlogPost2 {
 
